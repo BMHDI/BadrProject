@@ -2,12 +2,16 @@ const express = require("express");
 const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 const bodyParser = require("body-parser");
+const cors = require("cors"); // <-- Add this line
 
 dotenv.config();
 
 const app = express();
+app.use(cors()); // <-- Use CORS
 app.use(bodyParser.json());
-
+app.use(cors({
+  origin: 'http://localhost:5500'
+}));
 // Connect to MongoDB
 mongoose.connect(process.env.MONGO_URI, {
   useNewUrlParser: true,
