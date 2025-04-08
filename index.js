@@ -2,14 +2,17 @@ const express = require("express");
 const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 const bodyParser = require("body-parser");
-const cors = require("cors"); // <-- Add this line
+const cors = require("cors");
 
 dotenv.config();
 
 const app = express();
+
+// ✅ Enable CORS for a specific origin
 app.use(cors({
   origin: 'http://127.0.0.1:5500'
 }));
+
 app.use(bodyParser.json());
 
 // Connect to MongoDB
