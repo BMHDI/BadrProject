@@ -3,7 +3,7 @@ let data = []; // Declare data globally so it's accessible in handleSearch()
 
 // Async function to fetch data
 async function fetchData() {
-  const url = "https://badrproject-production.up.railway.app/items";
+  const url = "https://badr-project-8gul-5le2eoczc-bmhdis-projects.vercel.app/items";
 
   try {
     const response = await fetch(url);
@@ -31,8 +31,8 @@ function handleSearch() {
     resultDiv.className = "result success";
     resultDiv.innerHTML = `
       <p><strong>تم العثور على النتيجة ✅</strong></p>
-      <p>رقم مسار التلميذ: ${match.id}</p>
-      <p>عدد ساعات الغياب الغير المبررة: ${match.value}</p>
+      <p>${match.id} :رقم مسار التلميذ</p>
+      <p> ⏲ ${match.value} :عدد ساعات الغياب الغير المبررة </p>
     `;
   } else if (query) {
     resultDiv.className = "result error";
