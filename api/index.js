@@ -19,6 +19,7 @@ app.use((req, res, next) => {
   ];
 
   const origin = req.headers.origin;
+
   if (allowedOrigins.includes(origin)) {
     res.setHeader("Access-Control-Allow-Origin", origin);
   }
@@ -30,9 +31,9 @@ app.use((req, res, next) => {
   );
   res.setHeader("Access-Control-Allow-Credentials", "true");
 
-  // Handle OPTIONS preflight requests
+  // Handle preflight OPTIONS requests
   if (req.method === "OPTIONS") {
-    return res.sendStatus(204);
+    return res.status(204).end();
   }
 
   next();
@@ -57,7 +58,7 @@ if (!mongoose.connection.readyState) {
 }
 
 // -----------------------
-// Mongoose Schema & Model
+// Schema & Model
 // -----------------------
 const itemSchema = new mongoose.Schema({
   id: String,
@@ -84,6 +85,7 @@ app.get("/api/items", async (req, res) => {
     const items = await Item.find();
     res.json(items);
   } catch (err) {
+    console.error("Error fetching items:", err);
     res.status(500).json({ message: err.message });
   }
 });
@@ -99,6 +101,7 @@ app.post("/api/items", async (req, res) => {
     const savedItem = await item.save();
     res.status(201).json(savedItem);
   } catch (err) {
+    console.error("Error saving item:", err);
     res.status(400).json({ message: err.message });
   }
 });

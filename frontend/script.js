@@ -3,7 +3,7 @@ let data = []; // Declare data globally so it's accessible in handleSearch()
 
 // Async function to fetch data
 async function fetchData() {
-  const url = "https://badr-project-8gul-719hjxd72-bmhdis-projects.vercel.app/api/items";
+  const url = "https://badr-project-8gul-430dftw78-bmhdis-projects.vercel.app/api/items";
 
   try {
     const response = await fetch(url);
